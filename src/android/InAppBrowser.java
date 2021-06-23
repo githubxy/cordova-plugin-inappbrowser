@@ -1246,9 +1246,9 @@ public class InAppBrowser extends CordovaPlugin {
                    Intent intent = new Intent(Intent.ACTION_VIEW);
                    intent.setData(Uri.parse(url));
                    cordova.getActivity().startActivity(intent);
-                   return true;
+                   override = true;
                 } catch (android.content.ActivityNotFoundException e) {
-                   LOG.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
+                   LOG.e(LOG_TAG, "Error sending weixn " + url + ":" + e.toString());
                 }
             }
             // Test for whitelisted custom scheme names like mycoolapp:// or twitteroauthresponse:// (Twitter Oauth Response)
