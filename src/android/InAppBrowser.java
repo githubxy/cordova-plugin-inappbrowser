@@ -1241,6 +1241,16 @@ public class InAppBrowser extends CordovaPlugin {
                     LOG.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
                 }
             }
+            else if (url.startsWith("weixin:")) {
+                try {
+                   Intent intent = new Intent(Intent.ACTION_VIEW);
+                   intent.setData(Uri.parse(url));
+                   cordova.getActivity().startActivity(intent);
+                   override = true;
+                } catch (android.content.ActivityNotFoundException e) {
+                   LOG.e(LOG_TAG, "Error sending weixin " + url + ":" + e.toString());
+                }
+            }
             // Test for whitelisted custom scheme names like mycoolapp:// or twitteroauthresponse:// (Twitter Oauth Response)
             else if (!url.startsWith("http:") && !url.startsWith("https:") && url.matches("^[A-Za-z0-9+.-]*://.*?$")) {
                 if (allowedSchemes == null) {
